@@ -1,35 +1,41 @@
-# mybatis-generate
+# mybatis-generate-lxn
 
-#### 项目介绍
-
-1.  自定义生成mybatis ，可以自己控制模板
-
-2.  db目录下的main文件运行即可
-
-3.  借鉴 Mybatis-generator的思想
-
-4.  insert、update、query生成  主键查询生成XXXById
-
-5.  自由控制sql的返回的属性集，通过fetchXXX，或者excludeXXX控制  通过Builder构建查询
-
- *已经支持postgresql常用操作*
-
-#### 安装教程
-
-1.  插件已经集成到idea中，可以通过idea插件库下载
-
-![idea下载](./idea下载.png)
-#### 使用说明
-1. 程序主页
-![avatar](./主页.png)
-2. 生成代码使用
-![avatar](./example/步骤1.png)
-3. 具体使用请查询example目录
-#### 参与贡献
-
-1. 暂无
+根据mybatis-generate插件修改而来,原作者地址 :https://gitee.com/rohou
 
 
-#### 码云特技
+定制化修改如下：
 
-1. 其他idea插件 [EnumGenerator](https://gitee.com/rohou/EnumGenerator)
+1. 删除无用的空mapper
+2. 增加对 mybatis-paginator 的支持,参考 https://github.com/miemiedev/mybatis-paginator
+3. 增加批量插入
+4. 增加insert (...) values(...) ON DUPLICATE KEY UPDATE a=b,c=d,e=f
+5. 增加对CDSRouter的支持(内部功能)
+
+生成的mapper 如下：
+```
+public interface OrderBaseMapper {
+
+    int insertOrder(Order object);
+
+    int insertBatchOrder(@Param("list") List<Order> object);
+
+    int insertBatchOrder(@Param("list") List<Order> object,CDSRouter cdsRouter);
+
+    int updateOrder(Order object);
+
+    int update(Order.UpdateBuilder object);
+
+    int insertOrUpdate(@Param("add")Order insert,@Param("set")Order update);
+
+    PageList<Order> queryOrder(@Param("object")Order object,PageBounds pageBounds);
+
+    PageList<Order> queryOrder(@Param("object")Order object,PageBounds pageBounds,CDSRouter cdsRouter);
+
+    Order queryOrderLimit1(Order object);
+
+    Order queryOrderLimit1(Order object,CDSRouter cdsRouter);
+
+}
+
+```
+
