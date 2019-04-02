@@ -11,6 +11,8 @@
 4. 增加insert (...) values(...) ON DUPLICATE KEY UPDATE a=b,c=d,e=f
 5. 增加对CDSRouter的支持(内部功能)
 
+![avatar](./mybatis-lxn.png)
+
 生成的mapper 如下：
 ```
 public interface OrderBaseMapper {
@@ -39,7 +41,9 @@ public interface OrderBaseMapper {
 
 ```
 
-使用方法：
-下载relase https://github.com/xiananliu/mybatis-generator-lxn/releases/download/1.0.0/freemarker-ftl-1.0-SNAPSHOT.jar
-jre环境下双击执行
+使用方法：下载relase 
+
+https://github.com/xiananliu/mybatis-generator-lxn/releases/download/1.0.0/freemarker-ftl-1.0-SNAPSHOT.jar
+
+jre环境下双击执行！
 
