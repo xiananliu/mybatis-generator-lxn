@@ -109,6 +109,7 @@ public class ${className} implements Serializable {
         private List<${attr.javaTypeName}> rightFuzzy${attr.propertiesName?cap_first};
 
         public List<${attr.javaTypeName}> getRightFuzzy${attr.propertiesName?cap_first}() {return this.rightFuzzy${attr.propertiesName?cap_first};}
+
         </#if>
     </#list>
         private QueryBuilder () {
@@ -128,6 +129,7 @@ public class ${className} implements Serializable {
             this.${attr.propertiesName}St = ${attr.propertiesName}St;
             return this;
         }
+
         public QueryBuilder <#if attr.propertiesName?starts_with("set") || attr.propertiesName?starts_with("get")>with${attr.propertiesName?cap_first}<#else>${attr.propertiesName}</#if>LessEqThan(${attr.javaTypeName} ${attr.propertiesName}Ed) {
             this.${attr.propertiesName}Ed = ${attr.propertiesName}Ed;
             return this;
@@ -247,6 +249,7 @@ public class ${className} implements Serializable {
         private List<${attr.javaTypeName}> rightFuzzy${attr.propertiesName?cap_first};
 
         public List<${attr.javaTypeName}> getRightFuzzy${attr.propertiesName?cap_first}() {return this.rightFuzzy${attr.propertiesName?cap_first};}
+
             </#if>
         </#list>
     <#list attrs as attr>
