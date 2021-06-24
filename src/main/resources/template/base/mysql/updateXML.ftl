@@ -1,5 +1,5 @@
 
-    <update id="update${className}">
+    <update id="updateById">
         UPDATE ${sense}${tableName}${sense}
         SET
         <trim suffixOverrides=",">
