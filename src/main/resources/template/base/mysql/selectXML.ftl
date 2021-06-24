@@ -5,14 +5,14 @@
     </resultMap>
 
 
-    <select id="query${className}" resultMap="${className}Map">
+    <select id="query" resultMap="${className}Map">
         select
         <include refid="baseResult"></include>
         from  ${sense}${tableName}${sense}
         <include refid="queryWhere"></include>
     </select>
 
-    <select id="queryCount${className}" resultType="java.lang.Long">
+    <select id="queryCount" resultType="java.lang.Long">
         select
         count(1)
         from  ${sense}${tableName}${sense}
@@ -63,7 +63,7 @@
         </trim>
     </sql>
 
-    <select id="query${className}Limit1" resultMap="${className}Map">
+    <select id="queryOne" resultMap="${className}Map">
         select
         <include refid="baseResult"></include>
         from  ${sense}${tableName}${sense}

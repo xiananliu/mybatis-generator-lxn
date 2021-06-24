@@ -69,11 +69,11 @@ public class MainFrame extends JFrame{
 
     JCheckBox underLineToCamel=new JCheckBox("下划线转驼峰");
 
-    JCheckBox cdsRouter=new JCheckBox("包含cdsRouter");
+//    JCheckBox cdsRouter=new JCheckBox("包含cdsRouter");
 
     {
         dbSelect.addItem("mysql");
-        dbSelect.addItem("postgres");
+//        dbSelect.addItem("postgres");
 //        dbSelect.addItem("oracle");
         dbSelect.setSelectedItem(RuntimeEnv.pp.getDataBaseType());
         jScrollPane.setPreferredSize(new Dimension(150,252));
@@ -366,12 +366,12 @@ public class MainFrame extends JFrame{
 
         pane3.add(underLineToCamel);
 
-
-        cdsRouter.setSelected(RuntimeEnv.pp.isCdsRouter());
-        cdsRouter.addActionListener(actionEvent->{
-            RuntimeEnv.pp.setCdsRouter(cdsRouter.getSelectedObjects()!=null);
-        });
-        pane3.add(cdsRouter);
+//
+//        cdsRouter.setSelected(RuntimeEnv.pp.isCdsRouter());
+//        cdsRouter.addActionListener(actionEvent->{
+//            RuntimeEnv.pp.setCdsRouter(cdsRouter.getSelectedObjects()!=null);
+//        });
+//        pane3.add(cdsRouter);
 
 
         sperate.setSelected(RuntimeEnv.pp.isSperateRead());
