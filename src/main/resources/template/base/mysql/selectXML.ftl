@@ -9,48 +9,59 @@
         select
         <include refid="baseResult"></include>
         from  ${sense}${tableName}${sense}
+        <include refid="queryWhere"></include>
+    </select>
+
+    <select id="queryCount${className}" resultType="java.lang.Long">
+        select
+        count(1)
+        from  ${sense}${tableName}${sense}
+        <include refid="queryWhere"></include>
+    </select>
+
+    <sql id="queryWhere">
         <trim prefix="where" suffixOverrides="and | or">
-                <#list attrs as attr>
-            <if test="object.${attr.propertiesName} != null<#if attr.javaTypeName=="String"> and object.${attr.propertiesName}!=''</#if>">
-                ${sense}${attr.columnName}${sense} = ${"#\{"}object.${attr.propertiesName}} and
-            </if>
-                </#list>
+            <#list attrs as attr>
+                <if test="object.${attr.propertiesName} != null<#if attr.javaTypeName=="String"> and object.${attr.propertiesName}!=''</#if>">
+                    ${sense}${attr.columnName}${sense} = ${"#\{"}object.${attr.propertiesName}} and
+                </if>
+            </#list>
             <if test = "(object instanceof ${packageModel}.${className}${r'$'}QueryBuilder) == true">
                 <#list attrs as attr>
-                <if test="object.${attr.propertiesName}List != null">
-                    ${sense}${attr.columnName}${sense} in
-                    <foreach collection="object.${attr.propertiesName}List" close=")" open="(" separator="," item="item">
-                        ${"#\{"}item}
-                    </foreach> and
-                </if>
-                <#if attr.isBetween = "yes">
-                <if test="object.${attr.propertiesName}St !=null">
-                    ${sense}${attr.columnName}${sense} >= ${"#\{"}object.${attr.propertiesName}St} and
-                </if>
-                <if test="object.${attr.propertiesName}Ed!=null">
-                    ${sense}${attr.columnName}${sense} &lt;= ${"#\{"}object.${attr.propertiesName}Ed} and
-                </if>
-                </#if>
-                <#if attr.javaTypeName = "String">
-                <if test ="object.fuzzy${attr.propertiesName?cap_first}!=null and object.fuzzy${attr.propertiesName?cap_first}.size()>0">
-                    (
-                    <foreach collection="object.fuzzy${attr.propertiesName?cap_first}"  separator="or" item="item">
-                        ${sense}${attr.columnName?cap_first}${sense} like concat('%',${"#\{"}item},'%')
-                    </foreach>
-                    ) and
-                </if>
-                <if test ="object.rightFuzzy${attr.propertiesName?cap_first}!=null and object.rightFuzzy${attr.propertiesName?cap_first}.size()>0">
-                    (
-                    <foreach collection="object.rightFuzzy${attr.propertiesName?cap_first}"  separator="or" item="item">
-                        ${sense}${attr.columnName?cap_first}${sense} like concat(${"#\{"}item},'%')
-                    </foreach>
-                    ) and
-                </if>
-                </#if>
+                    <if test="object.${attr.propertiesName}List != null">
+                        ${sense}${attr.columnName}${sense} in
+                        <foreach collection="object.${attr.propertiesName}List" close=")" open="(" separator="," item="item">
+                            ${"#\{"}item}
+                        </foreach> and
+                    </if>
+                    <#if attr.isBetween = "yes">
+                        <if test="object.${attr.propertiesName}St !=null">
+                            ${sense}${attr.columnName}${sense} >= ${"#\{"}object.${attr.propertiesName}St} and
+                        </if>
+                        <if test="object.${attr.propertiesName}Ed!=null">
+                            ${sense}${attr.columnName}${sense} &lt;= ${"#\{"}object.${attr.propertiesName}Ed} and
+                        </if>
+                    </#if>
+                    <#if attr.javaTypeName = "String">
+                        <if test ="object.fuzzy${attr.propertiesName?cap_first}!=null and object.fuzzy${attr.propertiesName?cap_first}.size()>0">
+                            (
+                            <foreach collection="object.fuzzy${attr.propertiesName?cap_first}"  separator="or" item="item">
+                                ${sense}${attr.columnName?cap_first}${sense} like concat('%',${"#\{"}item},'%')
+                            </foreach>
+                            ) and
+                        </if>
+                        <if test ="object.rightFuzzy${attr.propertiesName?cap_first}!=null and object.rightFuzzy${attr.propertiesName?cap_first}.size()>0">
+                            (
+                            <foreach collection="object.rightFuzzy${attr.propertiesName?cap_first}"  separator="or" item="item">
+                                ${sense}${attr.columnName?cap_first}${sense} like concat(${"#\{"}item},'%')
+                            </foreach>
+                            ) and
+                        </if>
+                    </#if>
                 </#list>
             </if>
         </trim>
-    </select>
+    </sql>
 
     <select id="query${className}Limit1" resultMap="${className}Map">
         select
