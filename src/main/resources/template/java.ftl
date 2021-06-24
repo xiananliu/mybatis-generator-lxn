@@ -117,7 +117,8 @@ public class ${className} implements Serializable {
         <#list attrs as attr>
         <#if attr.isBetween = "yes">
 
-        public QueryBuilder <#if attr.propertiesName?starts_with("set") || attr.propertiesName?starts_with("get")>with${attr.propertiesName?cap_first}<#else>${attr.propertiesName}</#if>BetWeen(${attr.javaTypeName} ${attr.propertiesName}St, ${attr.javaTypeName} ${attr.propertiesName}Ed) {
+        public QueryBuilder <#if attr.propertiesName?starts_with("set") || attr.propertiesName?starts_with("get")>with${attr.propertiesName?cap_first}<#else>${attr.propertiesName}</#if>BetWeen(${attr.javaTypeName} ${attr.propertiesName}St,
+            ${attr.javaTypeName} ${attr.propertiesName}Ed) {
             this.${attr.propertiesName}St = ${attr.propertiesName}St;
             this.${attr.propertiesName}Ed = ${attr.propertiesName}Ed;
             return this;
