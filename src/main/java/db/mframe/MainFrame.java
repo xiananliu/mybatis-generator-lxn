@@ -69,6 +69,10 @@ public class MainFrame extends JFrame{
 
     JCheckBox underLineToCamel=new JCheckBox("下划线转驼峰");
 
+    JTextField logicField = new JTextField();
+
+    JTextField logicVal = new JTextField();
+
 //    JCheckBox cdsRouter=new JCheckBox("包含cdsRouter");
 
     {
@@ -88,7 +92,8 @@ public class MainFrame extends JFrame{
         mapperWorkOut.setPreferredSize(new Dimension(150,26));
         xmlWorkOut.setPreferredSize(new Dimension(150,26));
         author.setPreferredSize(new Dimension(150,26));
-
+        logicField.setPreferredSize(new Dimension(100,26));
+        logicVal.setPreferredSize(new Dimension(100,26));
     }
 
 
@@ -384,6 +389,13 @@ public class MainFrame extends JFrame{
         author.setText(RuntimeEnv.pp.getAuthor());
         pane3.add(author);
 
+        logicField.setText(RuntimeEnv.pp.getLogicField());
+        pane3.add(logicField);
+
+
+        logicVal.setText(RuntimeEnv.pp.getLogicVal());
+        pane3.add(logicVal);
+
         JButton generate = new JButton("生成模板");
         generate.addActionListener(actionEvent->{
             boolean pack=packgeFiler.getSelectedObjects()!=null;
@@ -402,6 +414,8 @@ public class MainFrame extends JFrame{
             RuntimeEnv.pp.setPackageXmlMapper(xmlOut.getText());
             RuntimeEnv.pp.setMapperXmlOutPath(xmlWorkOut.getText()+(pack?"/"+RuntimeEnv.pp.getPackageXmlMapper().replaceAll("\\.","/"):""));
             RuntimeEnv.pp.setAuthor(author.getText());
+            RuntimeEnv.pp.setLogicField(logicField.getText());
+            RuntimeEnv.pp.setLogicVal(logicVal.getText());
             try {
                 RuntimeEnv.storage();
                 GeneratorProcess.generate();

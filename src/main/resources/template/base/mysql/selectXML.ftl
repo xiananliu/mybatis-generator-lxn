@@ -21,6 +21,9 @@
 
     <sql id="queryWhere">
         <trim prefix="where" suffixOverrides="and | or">
+            <#if logicField??&&logicField!= "">
+                    ${logicField} = ${logicVal} and
+            </#if>
             <#list attrs as attr>
                 <if test="object.${attr.propertiesName} != null<#if attr.javaTypeName=="String"> and object.${attr.propertiesName}!=''</#if>">
                     ${sense}${attr.columnName}${sense} = ${"#\{"}object.${attr.propertiesName}} and
@@ -68,6 +71,9 @@
         <include refid="baseResult"></include>
         from  ${sense}${tableName}${sense}
         <trim prefix="where" suffixOverrides="and | or">
+            <#if logicField??&&logicField!= "">
+                ${logicField} = ${logicVal} and
+            </#if>
                 <#list attrs as attr>
             <if test="${attr.propertiesName} != null<#if attr.javaTypeName=="String"> and ${attr.propertiesName}!=''</#if>">
                 ${sense}${attr.columnName}${sense} = ${"#\{"}${attr.propertiesName}} and

@@ -79,6 +79,11 @@ public class MysqlMetaDataProcess implements DataBaseMetaDataProcess{
                 MySqlData mySqlData =new MySqlData();
                 mySqlData.setColumnName(rs.getString("COLUMN_NAME"));
                 mySqlData.setPropertiesName(RuntimeEnv.pp.isUnderlineToCamel()? StringUtils.underLineToCamel(mySqlData.getColumnName(),true):mySqlData.getColumnName());
+                if (mySqlData.getPropertiesName().endsWith("List")
+                        ||mySqlData.getPropertiesName().endsWith("St")
+                        ||mySqlData.getPropertiesName().endsWith("Ed")){
+                    mySqlData.setPropertiesName(mySqlData.getPropertiesName()+"0");
+                }
                 mySqlData.setTypeId(rs.getInt("DATA_TYPE"));
                 mySqlData.setTypeName(rs.getString("TYPE_NAME"));
                 mySqlData.setJavaTypeName(DataBaseTypeEnum.Mysql.getTypeSwitch().transfer(mySqlData.getTypeName()));

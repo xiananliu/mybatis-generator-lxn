@@ -43,6 +43,8 @@ public class GeneratorProcess {
         root.put("databaseType",RuntimeEnv.pp.getDataBaseType());
         root.put("timeStamp",String.valueOf(System.currentTimeMillis()));
         root.put("cdsRooter",RuntimeEnv.pp.isCdsRouter());
+        root.put("logicField",RuntimeEnv.pp.getLogicField());
+        root.put("logicVal",RuntimeEnv.pp.getLogicVal());
         MysqlGenUtils.genrate(root);
     }
 

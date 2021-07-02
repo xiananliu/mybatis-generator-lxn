@@ -13,6 +13,9 @@
         </trim>
         WHERE
         <trim suffixOverrides="and">
+            <#if logicField??&&logicField!= "">
+                ${logicField} = ${logicVal} and
+            </#if>
         <#list attrs as attr>
             <#if attr.isKey == 1>
                 ${sense}${attr.columnName}${sense} = ${"#\{"}${attr.propertiesName}} and
@@ -34,6 +37,9 @@
     </#list>
         </trim>
         <trim prefix="where" suffixOverrides="and | or">
+            <#if logicField??&&logicField!= "">
+                    ${logicField} = ${logicVal} and
+            </#if>
             <#list attrs as attr>
                 <if test="where.${attr.propertiesName}List != null">
                     ${sense}${attr.columnName}${sense} in

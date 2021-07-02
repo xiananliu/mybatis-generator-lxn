@@ -15,27 +15,28 @@
 
 生成的mapper 如下：
 ```
-public interface OrderBaseMapper {
+@Mapper
+public interface ModelInfoBaseMapper {
 
-    int insertOrder(Order object);
+    int insert(ModelInfo object);
 
-    int insertBatchOrder(@Param("list") List<Order> object);
+    int insertBatch(@Param("list") List<ModelInfo> object);
 
-    int insertBatchOrder(@Param("list") List<Order> object,CDSRouter cdsRouter);
+    int updateById(ModelInfo object);
 
-    int updateOrder(Order object);
+    int update(ModelInfo.UpdateBuilder object);
 
-    int update(Order.UpdateBuilder object);
+    int insertOrUpdate(@Param("add")ModelInfo insert,@Param("set")ModelInfo update);
 
-    int insertOrUpdate(@Param("add")Order insert,@Param("set")Order update);
+    PageList<ModelInfo> query(@Param("object")ModelInfo object);
 
-    PageList<Order> queryOrder(@Param("object")Order object,PageBounds pageBounds);
+    PageList<ModelInfo> query(@Param("object")ModelInfo object,PageBounds pageBounds);
 
-    PageList<Order> queryOrder(@Param("object")Order object,PageBounds pageBounds,CDSRouter cdsRouter);
+    Long queryCount(@Param("object")ModelInfo object);
 
-    Order queryOrderLimit1(Order object);
+    ModelInfo queryOne(ModelInfo object);
 
-    Order queryOrderLimit1(Order object,CDSRouter cdsRouter);
+
 
 }
 

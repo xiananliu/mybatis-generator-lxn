@@ -45,6 +45,10 @@ public class ProducerParam {
     private String mapperXmlName = className + Suffix_Mapper;
     @JSONField(ordinal = 14)
     private String author = "author";
+    @JSONField(ordinal = 14)
+    private String logicField = "逻辑删除字段";
+    @JSONField(ordinal = 14)
+    private String logicVal = "未删除值";
     /**
      * 是否覆盖
      */
@@ -74,6 +78,9 @@ public class ProducerParam {
 
     @JSONField(ordinal = 21)
     private boolean cdsRouter=false;
+
+    @JSONField(ordinal = 22)
+    private String ignoreField="";
 
     public boolean isUnderlineToCamel() {
         return underlineToCamel;
@@ -275,6 +282,30 @@ public class ProducerParam {
         this.cdsRouter = cdsRouter;
     }
 
+    public String getIgnoreField() {
+        return ignoreField;
+    }
+
+    public void setIgnoreField(String ignoreField) {
+        this.ignoreField = ignoreField;
+    }
+
+    public String getLogicField() {
+        return logicField;
+    }
+
+    public void setLogicField(String logicField) {
+        this.logicField = logicField;
+    }
+
+    public String getLogicVal() {
+        return logicVal;
+    }
+
+    public void setLogicVal(String logicVal) {
+        this.logicVal = logicVal;
+    }
+
     @Override
     public String toString() {
         return "ProducerParam{" +
@@ -294,6 +325,8 @@ public class ProducerParam {
                 ", mapperName='" + mapperName + '\'' +
                 ", mapperXmlName='" + mapperXmlName + '\'' +
                 ", author='" + author + '\'' +
+                ", logicField='" + logicField + '\'' +
+                ", logicVal='" + logicVal + '\'' +
                 ", overwrite=" + overwrite +
                 ", modelWorkSpace='" + modelWorkSpace + '\'' +
                 ", mapperWorkSpace='" + mapperWorkSpace + '\'' +
@@ -303,6 +336,7 @@ public class ProducerParam {
                 ", speratePath='" + speratePath + '\'' +
                 ", underlineToCamel=" + underlineToCamel +
                 ", cdsRouter=" + cdsRouter +
+                ", ignoreField='" + ignoreField + '\'' +
                 '}';
     }
 }
