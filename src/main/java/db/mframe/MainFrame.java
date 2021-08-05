@@ -12,8 +12,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.sql.SQLException;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * db.frame
@@ -265,7 +263,7 @@ public class MainFrame extends JFrame{
             jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             if(jfc.showOpenDialog(this)==JFileChooser.APPROVE_OPTION ){
                 //解释下这里,弹出个对话框,可以选择要上传的文件,如果选择了,就把选择的文件的绝对路径打印出来,有了绝对路径,通过JTextField的settext就能设置进去了,那个我没写
-                RuntimeEnv.pp.setModelWorkSpace(jfc.getSelectedFile().getAbsolutePath().replaceAll("\\\\","/"));
+                RuntimeEnv.pp.setModelWorkSpace(RuntimeEnv.getRelativizePath(jfc.getSelectedFile().getAbsolutePath().replaceAll("\\\\","/")));
                 modelWorkOut.setText(RuntimeEnv.pp.getModelWorkSpace());
             }
         });
@@ -288,7 +286,7 @@ public class MainFrame extends JFrame{
             jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             if(jfc.showOpenDialog(this)==JFileChooser.APPROVE_OPTION ){
                 //解释下这里,弹出个对话框,可以选择要上传的文件,如果选择了,就把选择的文件的绝对路径打印出来,有了绝对路径,通过JTextField的settext就能设置进去了,那个我没写
-                RuntimeEnv.pp.setMapperWorkSpace(jfc.getSelectedFile().getAbsolutePath().replaceAll("\\\\","/"));
+                RuntimeEnv.pp.setMapperWorkSpace(RuntimeEnv.getRelativizePath(jfc.getSelectedFile().getAbsolutePath().replaceAll("\\\\","/")));
                 mapperWorkOut.setText(RuntimeEnv.pp.getMapperWorkSpace());
             }
         });
@@ -311,7 +309,7 @@ public class MainFrame extends JFrame{
             jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             if(jfc.showOpenDialog(this)==JFileChooser.APPROVE_OPTION ){
                 //解释下这里,弹出个对话框,可以选择要上传的文件,如果选择了,就把选择的文件的绝对路径打印出来,有了绝对路径,通过JTextField的settext就能设置进去了,那个我没写
-                RuntimeEnv.pp.setXmlWorkSpace(jfc.getSelectedFile().getAbsolutePath().replaceAll("\\\\","/"));
+                RuntimeEnv.pp.setXmlWorkSpace(RuntimeEnv.getRelativizePath(jfc.getSelectedFile().getAbsolutePath().replaceAll("\\\\","/")));
                 xmlWorkOut.setText(RuntimeEnv.pp.getXmlWorkSpace());
             }
         });
@@ -432,5 +430,6 @@ public class MainFrame extends JFrame{
         AutoComplate.setupAutoComplete(xmlOut,xmlWorkOut);
         AutoComplate.setupAutoComplete(modelOut,modelWorkOut);
     }
+
 
 }

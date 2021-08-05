@@ -47,6 +47,8 @@ public class MysqlTypeSwitch implements TypeSwitch {
                 return "java.time.LocalDateTime";
             case "BIT":
                 return "Integer";
+            case "JSON":
+                return "String";
             default:
                 throw new IllegalArgumentException(typeName + " no such typeName,please edit db.mysql.process.TypeSwitch");
         }
@@ -110,6 +112,8 @@ public class MysqlTypeSwitch implements TypeSwitch {
                 return "yes";
             case "SERIAL":
                 return "yes";
+            case "JSON":
+                return "no";
             default:
                 throw new IllegalArgumentException(typeName + " no such typeName,please edit db.mysql.process.TypeSwitch");
         }
