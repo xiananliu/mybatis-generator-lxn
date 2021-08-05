@@ -143,7 +143,7 @@ public class MysqlGenUtils {
 
         // Create the root hash
 
-        File dir = new File(req.getOutPath());
+        File dir = new File(RuntimeEnv.getAbsolutePath(req.getOutPath()));
         if (!dir.exists()) {
             dir.mkdirs();
         }
@@ -164,7 +164,7 @@ public class MysqlGenUtils {
             temp.process(req.getTemplateParam(), out);
             fos.flush();
             fos.close();
-            System.out.println(req.getFileName() + "gen code success!");
+            System.out.println( "生成成功："+dir.getPath()+req.getFileName());
         }
     }
 }

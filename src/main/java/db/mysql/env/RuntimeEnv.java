@@ -6,6 +6,7 @@ import db.mysql.process.MysqlCommon;
 
 import java.io.*;
 import java.net.MalformedURLException;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 
 /**
@@ -41,6 +42,21 @@ public class RuntimeEnv {
         Path path1 = new File(absolute).toPath();
         Path path2 = new File(storagePath).toPath();
         return path2.relativize(path1).toString();
+    }
+
+    /**
+     * 相对路径转绝对路径
+     * @param relativize
+     * @return
+     */
+    public static String getAbsolutePath(String relativize){
+        Path base = new File(storagePath).toPath();
+        try {
+           return base.resolve(relativize).toRealPath(LinkOption.NOFOLLOW_LINKS).toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
 
