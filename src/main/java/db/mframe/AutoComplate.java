@@ -43,6 +43,10 @@ public class AutoComplate {
         });
 
         System.out.println("123");
+        System.out.println("123");
+        System.out.println("123");
+        System.out.println("123");
+
 
         txtInput.addKeyListener(new KeyAdapter() {
 
