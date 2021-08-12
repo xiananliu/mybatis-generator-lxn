@@ -46,7 +46,7 @@ public class AutoComplate {
         System.out.println("123");
         System.out.println("123");
         System.out.println("123");
-
+        System.out.println("冲突");
 
         txtInput.addKeyListener(new KeyAdapter() {
 
