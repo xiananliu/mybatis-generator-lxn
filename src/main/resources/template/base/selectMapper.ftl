@@ -4,7 +4,7 @@
 
     Long queryCount(@Param("object")${className} object);
 
-    ${className} queryOne(${className} object);
+    ${className} queryOne(@Param("object")${className} object);
 
 
 
