@@ -47,7 +47,7 @@ public class ${className} implements Serializable {
 
     public static UpdateBuilder UpdateBuild() {return new UpdateBuilder();}
 
-    public static QueryBuilder QueryBuild() {return new  QueryBuilder.QueryBuilder();}
+    public static QueryBuilder QueryBuild() {return new  QueryBuilder();}
 
     public static class UpdateBuilder {
 
